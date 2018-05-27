@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:xForms="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="OnlineBankingPrism.Views.ExchangeRatesPage"
+             Title="{Binding Title}">
+    <ContentPage.Content>
+        <ScrollView>
+            <xForms:SfDataGrid x:Name="DataGrid" ItemsSource="{Binding ExchangeRatesCollection}"></xForms:SfDataGrid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
