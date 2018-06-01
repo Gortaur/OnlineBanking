@@ -10,5 +10,6 @@ namespace OnlineBankingPrism.Constants
         public static String MainTabPage => "MainTabPage";
         public static String ReplenishmentPage => "ReplenishmentPage";
         public static String TransferPage => "TransferPage";
+        public static String CardTransactionsPage => "CardTransactionsPage";
     }
 }

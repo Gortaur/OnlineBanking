@@ -35,6 +35,7 @@ namespace OnlineBankingPrism
             containerRegistry.RegisterForNavigation<MainTabPage, MainTabPageViewModel>();
             containerRegistry.RegisterForNavigation<ReplenishmentPage, ReplenishmentPageViewModel>();
             containerRegistry.RegisterForNavigation<TransferPage, TransferPageViewModel>();
+            containerRegistry.RegisterForNavigation<CardTransactionsPage, CardTransactionsPageViewModel>();
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using OnlineBanking.Security;
 using OnlineBankingPrism.SharedEntities.Entities;
+using OnlineBankingPrism.SharedEntities.Enums;
 using Web.Infrastructure.Database.Repositories;
 
 namespace OnlineBanking.Test
@@ -66,14 +67,16 @@ namespace OnlineBanking.Test
                         Destination = "9999888877776666",
                         TransactionSum = 10,
                         SourceCard = "1111222233334444",
-                        Date = DateTime.Now
+                        Date = DateTime.Now,
+                        TransactionType = TransactionTypes.Transfer
                     },
                     new Transaction
                     {
                         Destination = "1234567890123456",
                         TransactionSum = 100,
                         SourceCard = "1111222233334444",
-                        Date = DateTime.Now
+                        Date = DateTime.Now,
+                        TransactionType = TransactionTypes.Transfer
                     }
                 }
             };
@@ -87,14 +90,16 @@ namespace OnlineBanking.Test
                         Destination = "1111222233334444",
                         TransactionSum = 10,
                         SourceCard = "9999888877776666",
-                        Date = DateTime.Now
+                        Date = DateTime.Now,
+                        TransactionType = TransactionTypes.Transfer
                     },
                     new Transaction
                     {
                         Destination = "1234567890123456",
                         TransactionSum = 100,
                         SourceCard = "9999888877776666",
-                        Date = DateTime.Now
+                        Date = DateTime.Now,
+                        TransactionType = TransactionTypes.Transfer
                     }
                 }
             };
@@ -108,14 +113,16 @@ namespace OnlineBanking.Test
                         Destination = "1111222233334444",
                         TransactionSum = 10,
                         SourceCard = "1234567890123456",
-                        Date = DateTime.Now
+                        Date = DateTime.Now,
+                        TransactionType = TransactionTypes.Transfer
                     },
                     new Transaction
                     {
                         Destination = "9999888877776666",
                         TransactionSum = 100,
                         SourceCard = "1234567890123456",
-                        Date = DateTime.Now
+                        Date = DateTime.Now,
+                        TransactionType = TransactionTypes.Transfer
                     }
                 }
             };

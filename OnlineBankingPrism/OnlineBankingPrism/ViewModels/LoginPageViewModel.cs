@@ -13,7 +13,8 @@ namespace OnlineBankingPrism.ViewModels
             Title = "Sign In";
             SignInCommand = new DelegateCommand(SignIn);
         }
-        public String Login { get; set; }
+
+        public String Login { get; set; } = "user";
         public String Password { get; set; }
         public async void SignIn()
         {

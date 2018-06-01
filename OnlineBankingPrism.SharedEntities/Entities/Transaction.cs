@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using OnlineBankingPrism.SharedEntities.Enums;
 
 namespace OnlineBankingPrism.SharedEntities.Entities
 {
@@ -15,5 +16,8 @@ namespace OnlineBankingPrism.SharedEntities.Entities
 
         [JsonProperty("date")]
         public DateTime Date { get; set; }
+
+        [JsonProperty("transactionType")]
+        public TransactionTypes TransactionType { get; set; }
     }
 }

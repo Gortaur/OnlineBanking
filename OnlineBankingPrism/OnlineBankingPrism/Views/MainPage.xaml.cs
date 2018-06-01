@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OnlineBankingPrism.Constants;
 using Xamarin.Forms;
 
 namespace OnlineBankingPrism.Views
@@ -12,6 +8,8 @@ namespace OnlineBankingPrism.Views
 		public MainPage ()
 		{
 			InitializeComponent ();
+
 		}
+
 	}
 }

@@ -2,14 +2,41 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:eventConverters="clr-namespace:OnlineBankingPrism.EventConverters;assembly=OnlineBankingPrism"
+             xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              x:Class="OnlineBankingPrism.Views.MainPage"
-             prism:ViewModelLocator.AutowireViewModel="True"
-             Title="{Binding Title}">
+             prism:ViewModelLocator.AutowireViewModel="True">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <eventConverters:ItemSelectedEventArgsConverter x:Key="ItemTappedConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-            <Label   Text="{Binding Title}" />
-            <Button  VerticalOptions="Center" Text="Replenishment" Command="{Binding NavigateToReplenishmentPageCommand}" />
-            <Button VerticalOptions="Center" Text="Transfer" Command="{Binding NavigateToTransferPageCommand}" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout>
+                <ListView  SelectedItem="{Binding SelectedItem}" ItemsSource="{Binding Cards}"  x:Name="CardList">
+                    <ListView.Behaviors>
+                        <behaviors:EventToCommandBehavior EventName="ItemSelected" Command="{Binding OnCardSelectedCommand}" EventArgsConverter="{StaticResource ItemTappedConverter}" />
+                    </ListView.Behaviors>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout Orientation="Vertical">
+                                        <Label Text="{Binding Id}" ></Label>
+                                    </StackLayout>
+                                    <Label Text="{Binding Balance}" HorizontalOptions="EndAndExpand"></Label>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <StackLayout>
+                    <Button  VerticalOptions="Center" Text="Replenishment" Command="{Binding NavigateToReplenishmentPageCommand}" />
+                    <Button VerticalOptions="Center" Text="Transfer" Command="{Binding NavigateToTransferPageCommand}" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

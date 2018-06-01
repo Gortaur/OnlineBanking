@@ -1,4 +1,6 @@
-﻿using OnlineBankingPrism.Constants;
+﻿using System.Collections.Generic;
+using OnlineBankingPrism.Constants;
+using OnlineBankingPrism.SharedEntities.Entities;
 using Prism.Commands;
 using Prism.Navigation;
 
@@ -12,10 +14,23 @@ namespace OnlineBankingPrism.ViewModels
             Title = "Main Page";
             NavigateToReplenishmentPageCommand = new DelegateCommand(NavigateToReplenishmentPage);
             NavigateToTransferPageCommand = new DelegateCommand(NavigateToTransferPage);
+            Cards = new List<Card>(SharedApplicationData.CurrentUser.Cards);
+            OnCardSelectedCommand = new DelegateCommand(OnCardSelected);
         }
+        public DelegateCommand OnCardSelectedCommand { get; set; }
+
+        public async void OnCardSelected()
+        {
+            SharedApplicationData.SelectedCard = SelectedItem;
+            await NavigationService.NavigateAsync(PageNames.CardTransactionsPage);
+        }
+
+        public Card SelectedItem { get; set; }
+        public List<Card> Cards { get; set; }
+
         public async void NavigateToTransferPage()
         {
-            await NavigationService.NavigateAsync(PageNames.ReplenishmentPage);
+            await NavigationService.NavigateAsync(PageNames.TransferPage);
         }      
         public async void NavigateToReplenishmentPage()
         {

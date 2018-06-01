@@ -5,8 +5,11 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="OnlineBankingPrism.Views.ReplenishmentPage">
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-            <Label Text="Replenishment page!"/>
+        <StackLayout Margin="10"  VerticalOptions="CenterAndExpand">
+            <Picker SelectedItem="{Binding SelectedCard}" ItemsSource="{Binding UserCards}" x:Name="CardPicker"/>
+            <Editor Text="{Binding ReceiverCardNumber}" x:Name="ReceiverCardNumberEditor" />
+            <Editor Text="{Binding TransactionSumm}" x:Name="TransactionSummEditor"/>
+            <Button Command="{Binding SubmitTransactionCommand}" x:Name="SubmitButton" Text="Submit!"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
