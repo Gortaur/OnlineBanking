@@ -8,7 +8,10 @@
              Title="{Binding Title}">
     <ContentPage.Content>
         <ScrollView>
-            <xForms:SfDataGrid x:Name="DataGrid" ItemsSource="{Binding ExchangeRatesCollection}"></xForms:SfDataGrid>
+            <StackLayout HorizontalOptions="FillAndExpand">
+                <xForms:SfDataGrid HeaderRowHeight="60" ColumnSizer="Star" x:Name="DataGrid" ItemsSource="{Binding ExchangeRatesCollection}">
+                </xForms:SfDataGrid>
+            </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

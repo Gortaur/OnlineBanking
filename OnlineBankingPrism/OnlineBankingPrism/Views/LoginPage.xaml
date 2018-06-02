@@ -4,10 +4,12 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="OnlineBankingPrism.Views.LoginPage"
-             Title="Authorization">
+             Title="Authorization"
+             BackgroundColor="White">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="AliceBlue">
-            <StackLayout Margin="10,100,10,10" >
+        <StackLayout>
+            <StackLayout Margin="10,10,10,10" >
+                <Image WidthRequest="150" HeightRequest="150" Source="image.png" />
                 <Label  FontAttributes="Italic" FontSize="20" VerticalOptions="Center" Text="Username" />
                 <Entry FontSize="20" Text="{Binding Login}" VerticalOptions="Center" x:Name="UsernameEntry" Placeholder="username" />
                 <Label FontAttributes="Italic" FontSize="20" VerticalOptions="Center" Text="Password" />

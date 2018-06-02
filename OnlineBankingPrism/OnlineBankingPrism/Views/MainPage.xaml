@@ -28,21 +28,20 @@
                                             <RowDefinition Height="*" />
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="20*" />
-                                            <ColumnDefinition Width="80*" />
+                                            <ColumnDefinition Width="15*" />
+                                            <ColumnDefinition Width="85*" />
                                         </Grid.ColumnDefinitions>
                                         <StackLayout Grid.Column="0" Grid.Row="0" HorizontalOptions="StartAndExpand">
-                                            <Image MinimumWidthRequest="40" MinimumHeightRequest="40" Source="card.png" />
+                                            <Image VerticalOptions="CenterAndExpand" MinimumWidthRequest="40" MinimumHeightRequest="40" Source="card.png" />
                                         </StackLayout>
-                                        <StackLayout Grid.Column="1" Grid.Row="0" HorizontalOptions="EndAndExpand">
-                                            <Grid >
+                                        <StackLayout Grid.Column="1" Grid.Row="0">
+                                            <Grid Margin="10,20,10,0">
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="50*" />
                                                     <RowDefinition Height="50*" />
                                                 </Grid.RowDefinitions>
                                                 <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="80*" />
-                                                    <ColumnDefinition Width="20*" />
+                                                    <ColumnDefinition Width="70*" />
                                                 </Grid.ColumnDefinitions>
                                                 <Label
                                                     Grid.Column="0" Grid.Row="0"
@@ -51,7 +50,7 @@
                                                     Text="{Binding Id}" 
                                                 />
                                                 <Label 
-                                                    Grid.Column="1" Grid.Row="1"
+                                                    Grid.Column="0" Grid.Row="1"
                                                     FontAttributes="Bold"
                                                     FontSize="20"
                                                     Text="{Binding Balance}"

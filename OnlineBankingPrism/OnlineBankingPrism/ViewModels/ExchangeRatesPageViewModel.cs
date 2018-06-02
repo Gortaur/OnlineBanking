@@ -1,5 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using OnlineBankingPrism.Constants;
+using OnlineBankingPrism.Models;
 using OnlineBankingPrism.SharedEntities.Entities;
 using Prism.Navigation;
 
@@ -10,8 +12,13 @@ namespace OnlineBankingPrism.ViewModels
         public ExchangeRatesPageViewModel(INavigationService navigationService) : base(navigationService)
         {
             Title = "Exchange rates";
-            ExchangeRatesCollection= new ObservableCollection<NbuExchangeRates>(SharedApplicationData.ExchangeRates);
+            var rates = new List<ExchangeRateModel>();
+            foreach (var rate in SharedApplicationData.ExchangeRates)
+            {
+                rates.Add(new ExchangeRateModel(rate));
+            }
+            ExchangeRatesCollection= new ObservableCollection<ExchangeRateModel>(rates);
         }
-        public ObservableCollection<NbuExchangeRates> ExchangeRatesCollection { get; set; }
+        public ObservableCollection<ExchangeRateModel> ExchangeRatesCollection { get; set; }
     }
 }
