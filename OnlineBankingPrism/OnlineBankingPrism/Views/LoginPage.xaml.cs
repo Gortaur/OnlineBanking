@@ -23,6 +23,7 @@ namespace OnlineBankingPrism.Views
             {
                 DisplayAlert("Error", "Wrong login or password! Please, try again.", "Ok");
                 _wrongAttempts++;
+                return;
             }
             DisplayAlert("Error", "Too many attempts has been made, login option is blocked. Try again later", "Ok");
             LoginButton.IsEnabled = false;

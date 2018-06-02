@@ -15,7 +15,7 @@
                 <Label FontAttributes="Italic" FontSize="20" VerticalOptions="Center" Text="Password" />
                 <Entry Text="{Binding Password}" VerticalOptions="Center" x:Name="PasswordEntry" IsPassword="true" />
                 <Button x:Name="LoginButton" TextColor="White" BackgroundColor="Green" FontAttributes="Italic" FontSize="20" VerticalOptions="Center" Text="Log In" Command="{Binding SignInCommand}" />
-                <Label FontSize="20" FontAttributes="Bold" x:Name="MessageLabel"  Text="{Binding Error, Mode=OneWay}" />
+                <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

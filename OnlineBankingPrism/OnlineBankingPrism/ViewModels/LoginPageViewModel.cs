@@ -19,11 +19,15 @@ namespace OnlineBankingPrism.ViewModels
         public String Password { get; set; }
         public async void SignIn()
         {
+            IsBusy = true;
             if (await AuthorizationService.Authorize(Login, Password))
             {
-                NavigateToMainPage(); 
+                NavigateToMainPage();
+                IsBusy = false;
+                return;
             }
             MessagingCenter.Send(this, "Error");
+            IsBusy = false;
         }
 
         public async void NavigateToMainPage()
@@ -31,5 +35,17 @@ namespace OnlineBankingPrism.ViewModels
             await NavigationService.NavigateAsync(PageNames.MainTabPage);
         }
         public DelegateCommand SignInCommand { get; }
+
+        private bool _isBusy;
+
+        public bool IsBusy
+        {
+            get => _isBusy;
+            set
+            {
+                _isBusy = value;
+                RaisePropertyChanged(nameof(IsBusy));
+            }
+        }
     }
 }
