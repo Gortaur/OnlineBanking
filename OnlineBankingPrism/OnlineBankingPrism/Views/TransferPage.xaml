@@ -12,7 +12,7 @@
             <Label FontSize="20" Text="Choose your card:"/>
             <Picker Title="Available cards"  SelectedItem="{Binding SelectedCard}" ItemsSource="{Binding UserCards}" x:Name="CardPicker"/>
             <Label FontSize="20" Text="Receiver phone number:"/>
-            <Entry  Placeholder="XXXX XXXX XXXX XXXX" FontSize="20" Text="{Binding ReceiverCardNumber}" x:Name="ReceiverCardNumberEditor" />
+            <Entry Keyboard="Numeric"  Placeholder="XXXX XXXX XXXX XXXX" FontSize="20" Text="{Binding ReceiverCardNumber}" x:Name="ReceiverCardNumberEditor" />
             <Label FontSize="20" Text="Summ:"/>
             <Entry Placeholder="100.0" FontSize="20" Keyboard="Numeric" Text="{Binding TransactionSumm}" x:Name="TransactionSummEditor"/>
             <Button FontSize="20" TextColor="White" BackgroundColor="Green" Clicked="SubmitButton_OnClicked" Command="{Binding SubmitTransactionCommand}" x:Name="SubmitButton" Text="Submit!"/>

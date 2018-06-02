@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using OnlineBanking.Security;
 using OnlineBankingPrism.Constants;
@@ -12,12 +12,10 @@ namespace OnlineBankingPrism.Services
     {
         public static async Task<Boolean> Authorize(string login, string password)
         {
+            HttpClientInstance.Client = new HttpClient();
             var encodedPassword = PasswordEncoder.GetHash(password);
-            HttpClientHandler handler = new HttpClientHandler
-            {
-                Credentials = new NetworkCredential(login,encodedPassword),
-            };
-            HttpClientInstance.Client = new HttpClient(handler);
+            var byteArray = Encoding.ASCII.GetBytes($"{login}:{encodedPassword}");
+            HttpClientInstance.Client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
             return await SetCurrentUser(login);
         }
 
