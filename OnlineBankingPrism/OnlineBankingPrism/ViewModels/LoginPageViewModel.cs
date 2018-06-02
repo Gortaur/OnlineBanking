@@ -3,6 +3,7 @@ using OnlineBankingPrism.Constants;
 using OnlineBankingPrism.Services;
 using Prism.Commands;
 using Prism.Navigation;
+using Xamarin.Forms;
 
 namespace OnlineBankingPrism.ViewModels
 {
@@ -19,7 +20,10 @@ namespace OnlineBankingPrism.ViewModels
         public async void SignIn()
         {
             if (await AuthorizationService.Authorize(Login, Password))
-                NavigateToMainPage();
+            {
+                NavigateToMainPage(); 
+            }
+            MessagingCenter.Send(this, "Error");
         }
 
         public async void NavigateToMainPage()

@@ -14,8 +14,8 @@
                 <Entry FontSize="20" Text="{Binding Login}" VerticalOptions="Center" x:Name="UsernameEntry" Placeholder="username" />
                 <Label FontAttributes="Italic" FontSize="20" VerticalOptions="Center" Text="Password" />
                 <Entry Text="{Binding Password}" VerticalOptions="Center" x:Name="PasswordEntry" IsPassword="true" />
-                <Button TextColor="White" BackgroundColor="Green" FontAttributes="Italic" FontSize="20" VerticalOptions="Center" Text="Log In" Command="{Binding SignInCommand}" />
-                <Label FontSize="14" VerticalOptions="Center" x:Name="MessageLabel" />
+                <Button x:Name="LoginButton" TextColor="White" BackgroundColor="Green" FontAttributes="Italic" FontSize="20" VerticalOptions="Center" Text="Log In" Command="{Binding SignInCommand}" />
+                <Label FontSize="20" FontAttributes="Bold" x:Name="MessageLabel"  Text="{Binding Error, Mode=OneWay}" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
