@@ -7,7 +7,7 @@
             x:Class="OnlineBankingPrism.Views.MainTabPage"
             CurrentPageChanged="MainTabPage_OnCurrentPageChanged">
     <TabbedPage.Children>
-        <views:MainPage  Title="Main Page" />
-        <views:ExchangeRatesPage Title="Exchange rates"/>
+        <views:MainPage Icon="home.png"   Title="Main Page" />
+        <views:ExchangeRatesPage Icon="exchange.png"  Title="Exchange rates"/>
     </TabbedPage.Children>
 </TabbedPage>

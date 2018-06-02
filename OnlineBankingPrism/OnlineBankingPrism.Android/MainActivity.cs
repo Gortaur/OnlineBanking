@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Support.Design.Widget;
 using Prism;
 using Prism.Ioc;
 
