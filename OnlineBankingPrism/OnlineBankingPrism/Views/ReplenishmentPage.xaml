@@ -15,7 +15,7 @@
             <Entry Placeholder="+380xxxxxxx" FontSize="20" Text="{Binding ReceiverCardNumber}" x:Name="ReceiverCardNumberEditor" />
             <Label FontSize="20" Text="Summ:"/>
             <Entry Placeholder="100.0" FontSize="20" Keyboard="Numeric" Text="{Binding TransactionSumm}" x:Name="TransactionSummEditor"/>
-            <Button FontSize="20" TextColor="White" BackgroundColor="Green" Command="{Binding SubmitTransactionCommand}" x:Name="SubmitButton" Text="Submit!"/>
+            <Button FontSize="20" TextColor="White" Clicked="SubmitButton_OnClicked" BackgroundColor="Green" Command="{Binding SubmitTransactionCommand}" x:Name="SubmitButton" Text="Submit!"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

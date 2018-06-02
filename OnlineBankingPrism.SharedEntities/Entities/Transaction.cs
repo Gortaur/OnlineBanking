@@ -19,5 +19,8 @@ namespace OnlineBankingPrism.SharedEntities.Entities
 
         [JsonProperty("transactionType")]
         public TransactionTypes TransactionType { get; set; }
+
+        [JsonProperty("transactionDestinationRole")]
+        public TransactionDestinationRole TransactionDestinationRole { get; set; }
     }
 }

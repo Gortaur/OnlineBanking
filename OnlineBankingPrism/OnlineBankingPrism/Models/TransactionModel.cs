@@ -13,7 +13,14 @@ namespace OnlineBankingPrism.Models
         {
             SourceCard = transaction.SourceCard;
             Destination = transaction.Destination;
-            TransactionSum ="-"+transaction.TransactionSum;
+            if (transaction.TransactionDestinationRole == TransactionDestinationRole.Receiver)
+            {
+                TransactionSum = "+" + transaction.TransactionSum+"UAH";
+            }
+            else
+            {
+                TransactionSum = "-" + transaction.TransactionSum + "UAH";
+            }
             TransactionType = transaction.TransactionType;
         }
 

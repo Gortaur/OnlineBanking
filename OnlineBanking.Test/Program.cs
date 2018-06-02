@@ -68,7 +68,8 @@ namespace OnlineBanking.Test
                         TransactionSum = 10,
                         SourceCard = "1111222233334444",
                         Date = DateTime.Now,
-                        TransactionType = TransactionTypes.Transfer
+                        TransactionType = TransactionTypes.Transfer,
+                        TransactionDestinationRole = TransactionDestinationRole.Sender
                     },
                     new Transaction
                     {
@@ -76,7 +77,8 @@ namespace OnlineBanking.Test
                         TransactionSum = 100,
                         SourceCard = "1111222233334444",
                         Date = DateTime.Now,
-                        TransactionType = TransactionTypes.Transfer
+                        TransactionType = TransactionTypes.Transfer,
+                        TransactionDestinationRole = TransactionDestinationRole.Sender
                     }
                 }
             };
@@ -91,7 +93,8 @@ namespace OnlineBanking.Test
                         TransactionSum = 10,
                         SourceCard = "9999888877776666",
                         Date = DateTime.Now,
-                        TransactionType = TransactionTypes.Transfer
+                        TransactionType = TransactionTypes.Transfer,
+                        TransactionDestinationRole = TransactionDestinationRole.Sender
                     },
                     new Transaction
                     {
@@ -114,7 +117,8 @@ namespace OnlineBanking.Test
                         TransactionSum = 10,
                         SourceCard = "1234567890123456",
                         Date = DateTime.Now,
-                        TransactionType = TransactionTypes.Transfer
+                        TransactionType = TransactionTypes.Transfer,
+                        TransactionDestinationRole = TransactionDestinationRole.Sender
                     },
                     new Transaction
                     {
@@ -122,7 +126,8 @@ namespace OnlineBanking.Test
                         TransactionSum = 100,
                         SourceCard = "1234567890123456",
                         Date = DateTime.Now,
-                        TransactionType = TransactionTypes.Transfer
+                        TransactionType = TransactionTypes.Transfer,
+                        TransactionDestinationRole = TransactionDestinationRole.Sender
                     }
                 }
             };

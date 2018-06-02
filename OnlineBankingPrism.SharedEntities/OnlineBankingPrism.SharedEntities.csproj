@@ -55,6 +55,7 @@
     <Compile Include="Entities\NbuExchangeRates.cs" />
     <Compile Include="Entities\Transaction.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Enums\TransactionDestinationRole.cs" />
     <Compile Include="Enums\TransactionTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using OnlineBankingPrism.SharedEntities.Entities;
+using OnlineBankingPrism.SharedEntities.Enums;
 using Web.Infrastructure.Database.Repositories;
 
 namespace Web.ApplicationCore.Services
@@ -104,6 +105,21 @@ namespace Web.ApplicationCore.Services
 
         private async Task<Boolean> SaveTransaction(Transaction transaction)
         {
+
+           if(!await SaveSenderTransaction(transaction))
+            {
+                return false;
+            }
+            if (transaction.TransactionType == TransactionTypes.Transfer)
+            {
+                return await SaveReceiverTransaction(transaction);
+            }
+
+            return true;
+        }
+        private async Task<Boolean> SaveSenderTransaction(Transaction transaction)
+        {
+            transaction.TransactionDestinationRole = TransactionDestinationRole.Sender;
             var cardTransaction = await _transactionRepository.GetById(transaction.SourceCard);
             if (cardTransaction == null)
             {
@@ -118,9 +134,26 @@ namespace Web.ApplicationCore.Services
             cardTransaction.Transactions.Add(transaction);
             return await _transactionRepository.Update(cardTransaction);
         }
+        private async Task<Boolean> SaveReceiverTransaction(Transaction transaction)
+        {
+            transaction.TransactionDestinationRole = TransactionDestinationRole.Receiver;
+            var cardTransaction = await _transactionRepository.GetById(transaction.Destination);
+            if (cardTransaction == null)
+            {
+                cardTransaction = new CardTransactions
+                {
+                    Id = transaction.Destination,
+                    Transactions = new List<Transaction> { transaction }
+                };
+                return await _transactionRepository.Insert(cardTransaction);
+            }
+
+            cardTransaction.Transactions.Add(transaction);
+            return await _transactionRepository.Update(cardTransaction);
+        }
+
         private Boolean VerifyTransferTransactionDestination(Transaction transaction)
             => transaction.Destination.Length == 16 && transaction.Destination.All(char.IsDigit);
-
         private Boolean VerifyReplenishmentTransactionDestination(Transaction transaction)
         {
             if (transaction.Destination.Length != 13)
@@ -137,6 +170,7 @@ namespace Web.ApplicationCore.Services
 
             return substring.All(char.IsDigit);
         }
+
         private readonly GenericRepository<Card> _cardRepository;
         private readonly GenericRepository<CardTransactions> _transactionRepository;
         private readonly GenericRepository<User> _userRepository;

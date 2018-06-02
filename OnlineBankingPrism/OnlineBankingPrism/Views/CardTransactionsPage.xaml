@@ -3,21 +3,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="OnlineBankingPrism.Views.CardTransactionsPage">
+             x:Class="OnlineBankingPrism.Views.CardTransactionsPage"
+              Title="Card Transactions">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <ListView ItemsSource="{Binding Transactions}"  x:Name="TransactionList">
+                <ListView ItemsSource="{Binding Transactions}"  x:Name="TransactionList" HasUnevenRows="True" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
+                            <ViewCell Height="120" >
                                 <StackLayout Orientation="Horizontal">
                                     <StackLayout Orientation="Vertical">
-                                        <Label Text="{Binding SourceCard}" ></Label>
-                                        <Label Text="{Binding Destination}" ></Label>
-                                        <Label Text="{Binding Date}" ></Label>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label FontSize="20" FontAttributes="Bold" Text="From:" />
+                                            <Label FontSize="20" Text="{Binding SourceCard}" ></Label>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label FontSize="20" FontAttributes="Bold" Text="To:" />
+                                            <Label FontSize="20" Text="{Binding Destination}" ></Label>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label FontSize="20" FontAttributes="Bold" Text="Date:" />
+                                            <Label FontSize="20" Text="{Binding Date}" ></Label>
+                                        </StackLayout>
                                     </StackLayout>
-                                    <Label Text="{Binding TransactionSum}" HorizontalOptions="EndAndExpand"></Label>
+                                    <Label FontSize="24" FontAttributes="Bold" Text="{Binding TransactionSum}" VerticalOptions="Center" HorizontalOptions="EndAndExpand"></Label>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
