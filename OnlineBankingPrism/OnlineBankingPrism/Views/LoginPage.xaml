@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="OnlineBankingPrism.Views.LoginPage"
+             Title="Authorization"
+             BackgroundColor="White">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Margin="10,10,10,10" >
+                <Image WidthRequest="150" HeightRequest="150" Source="image.png" />
+                <Label  FontAttributes="Italic" FontSize="20" VerticalOptions="Center" Text="Username" />
+                <Entry FontSize="20" Text="{Binding Login}" VerticalOptions="Center" x:Name="UsernameEntry" Placeholder="username" />
+                <Label FontAttributes="Italic" FontSize="20" VerticalOptions="Center" Text="Password" />
+                <Entry Text="{Binding Password}" VerticalOptions="Center" x:Name="PasswordEntry" IsPassword="true" />
+                <Button x:Name="LoginButton" TextColor="White" BackgroundColor="Green" FontAttributes="Italic" FontSize="20" VerticalOptions="Center" Text="Log In" Command="{Binding SignInCommand}" />
+                <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

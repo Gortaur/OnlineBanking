@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:xForms="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="OnlineBankingPrism.Views.ExchangeRatesPage"
+             Title="{Binding Title}">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout HorizontalOptions="FillAndExpand">
+                <xForms:SfDataGrid 
+                    IsBusy="{Binding IsRefreshing}"
+                    AllowPullToRefresh="True"
+                    PullToRefreshCommand="{Binding RefreshCommand}"
+                    HeaderRowHeight="60"
+                    ColumnSizer="Star"
+                    x:Name="DataGrid"
+                    ItemsSource="{Binding ExchangeRatesCollection}"
+                />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

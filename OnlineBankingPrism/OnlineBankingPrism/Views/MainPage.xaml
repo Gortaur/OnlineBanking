@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:eventConverters="clr-namespace:OnlineBankingPrism.EventConverters;assembly=OnlineBankingPrism"
+             xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             x:Class="OnlineBankingPrism.Views.MainPage"
+             prism:ViewModelLocator.AutowireViewModel="True">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <eventConverters:ItemSelectedEventArgsConverter x:Key="ItemTappedConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <Label Text="Available cards:" FontSize="20" FontAttributes="Bold" />
+                <ScrollView VerticalOptions="StartAndExpand">
+                <StackLayout Margin="2,10,2,0">
+                    <ListView IsPullToRefreshEnabled="True"
+                              RefreshCommand="{Binding RefreshCommand}"
+                              IsRefreshing="{Binding IsRefreshing}"
+                              RowHeight="80"
+                              SelectedItem="{Binding SelectedItem}"
+                              ItemsSource="{Binding Cards}"
+                              x:Name="CardList">
+                        <ListView.Behaviors>
+                            <behaviors:EventToCommandBehavior EventName="ItemSelected" Command="{Binding OnCardSelectedCommand}" EventArgsConverter="{StaticResource ItemTappedConverter}" />
+                        </ListView.Behaviors>
+                        <ListView.ItemTemplate >
+                            <DataTemplate>
+                                <ViewCell >
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="15*" />
+                                            <ColumnDefinition Width="85*" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout Grid.Column="0" Grid.Row="0" HorizontalOptions="StartAndExpand">
+                                            <Image VerticalOptions="CenterAndExpand" MinimumWidthRequest="40" MinimumHeightRequest="40" Source="card.png" />
+                                        </StackLayout>
+                                        <StackLayout Grid.Column="1" Grid.Row="0">
+                                            <Grid Margin="10,20,10,0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="50*" />
+                                                    <RowDefinition Height="50*" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="70*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Label
+                                                    Grid.Column="0" Grid.Row="0"
+                                                    HorizontalOptions="StartAndExpand"
+                                                    FontSize="20"
+                                                    Text="{Binding Id}" 
+                                                />
+                                                <Label 
+                                                    Grid.Column="0" Grid.Row="1"
+                                                    FontAttributes="Bold"
+                                                    FontSize="20"
+                                                    Text="{Binding Balance}"
+                                                    HorizontalOptions="EndAndExpand"
+                                                />
+                                            </Grid>
+                                        </StackLayout>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </ScrollView>
+            <StackLayout Margin="10,0,10,10" VerticalOptions="EndAndExpand">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        TextColor="Black"
+                        BorderColor="#008000"
+                        BorderWidth="5"
+                        BorderRadius="5"
+                        BackgroundColor="#FFFFFF"
+                        ContentLayout="Top,10"
+                        Image="replenish.png"
+                        Text="Replenishment"
+                        Command="{Binding NavigateToReplenishmentPageCommand}" 
+                    />
+                    <Button 
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        TextColor="Black"
+                        BorderColor="#008000"
+                        BorderWidth="5"
+                        BorderRadius="5"
+                        BackgroundColor="#FFFFFF"
+                        ContentLayout="Top,10"
+                        Image="transfer.png"
+
+                        Text="Transfer"
+                        Command="{Binding NavigateToTransferPageCommand}"
+                    />
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

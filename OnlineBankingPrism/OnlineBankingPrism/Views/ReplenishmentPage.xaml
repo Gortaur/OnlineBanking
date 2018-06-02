@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="OnlineBankingPrism.Views.ReplenishmentPage"
+             Title="Replenishment"
+             BackgroundColor="White">
+    <ContentPage.Content>
+        <StackLayout Margin="10"  VerticalOptions="StartAndExpand">
+            <Image WidthRequest="100" HeightRequest="100" Source="image.png" />
+            <Label FontSize="20" Text="Choose your card:"/>
+            <Picker Title="Available cards"  SelectedItem="{Binding SelectedCard}" ItemsSource="{Binding UserCards}" x:Name="CardPicker"/>
+            <Label FontSize="20" Text="Receiver phone number:"/>
+            <Entry Placeholder="+380xxxxxxx" FontSize="20" Text="{Binding ReceiverCardNumber}" x:Name="ReceiverCardNumberEditor" />
+            <Label FontSize="20" Text="Summ:"/>
+            <Entry Placeholder="100.0" FontSize="20" Keyboard="Numeric" Text="{Binding TransactionSumm}" x:Name="TransactionSummEditor"/>
+            <Button FontSize="20" TextColor="White" Clicked="SubmitButton_OnClicked" BackgroundColor="Green" Command="{Binding SubmitTransactionCommand}" x:Name="SubmitButton" Text="Submit!"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
