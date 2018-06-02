@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using OnlineBankingPrism.Constants;
 using OnlineBankingPrism.SharedEntities.Entities;
 using OnlineBankingPrism.SharedEntities.Enums;
 using Prism.Commands;
@@ -43,6 +44,7 @@ namespace OnlineBankingPrism.ViewModels
             }
 
            await RequestManager.RequestManager.PostTransfer(transaction);
+            await NavigationService.NavigateAsync($"CustomNavigationPage/{PageNames.MainTabPage}");
         }
 
         private Boolean VerifyTransferTransactionDestination(Transaction transaction)
