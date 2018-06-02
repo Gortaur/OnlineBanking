@@ -55,7 +55,9 @@ namespace Web.FIlters
             {
                 var identity = new GenericIdentity(userName);
                 SetPrincipal(new GenericPrincipal(identity, null));
+                return;
             }
+            context.ErrorResult = new AuthenticationFailureResult("Invalid credentials", request);
         }
 
         public async Task ChallengeAsync(HttpAuthenticationChallengeContext context, CancellationToken cancellationToken)
