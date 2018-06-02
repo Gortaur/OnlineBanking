@@ -9,8 +9,15 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout HorizontalOptions="FillAndExpand">
-                <xForms:SfDataGrid HeaderRowHeight="60" ColumnSizer="Star" x:Name="DataGrid" ItemsSource="{Binding ExchangeRatesCollection}">
-                </xForms:SfDataGrid>
+                <xForms:SfDataGrid 
+                    IsBusy="{Binding IsRefreshing}"
+                    AllowPullToRefresh="True"
+                    PullToRefreshCommand="{Binding RefreshCommand}"
+                    HeaderRowHeight="60"
+                    ColumnSizer="Star"
+                    x:Name="DataGrid"
+                    ItemsSource="{Binding ExchangeRatesCollection}"
+                />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

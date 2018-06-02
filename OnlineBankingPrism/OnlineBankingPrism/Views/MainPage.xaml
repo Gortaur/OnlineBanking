@@ -13,13 +13,19 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout BackgroundColor="White">
-        <ScrollView VerticalOptions="StartAndExpand">
+            <Label Text="Available cards:" FontSize="20" FontAttributes="Bold" />
+                <ScrollView VerticalOptions="StartAndExpand">
                 <StackLayout Margin="2,10,2,0">
-                    <ListView RowHeight="80"  SelectedItem="{Binding SelectedItem}" ItemsSource="{Binding Cards}"  x:Name="CardList">
+                    <ListView IsPullToRefreshEnabled="True"
+                              RefreshCommand="{Binding RefreshCommand}"
+                              IsRefreshing="{Binding IsRefreshing}"
+                              RowHeight="80"
+                              SelectedItem="{Binding SelectedItem}"
+                              ItemsSource="{Binding Cards}"
+                              x:Name="CardList">
                         <ListView.Behaviors>
                             <behaviors:EventToCommandBehavior EventName="ItemSelected" Command="{Binding OnCardSelectedCommand}" EventArgsConverter="{StaticResource ItemTappedConverter}" />
                         </ListView.Behaviors>
-
                         <ListView.ItemTemplate >
                             <DataTemplate>
                                 <ViewCell >
