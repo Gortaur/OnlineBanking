@@ -10,6 +10,7 @@ namespace OnlineBankingPrism.Views
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+            BarBackgroundColor = Color.Green;
         }
 
         private void MainTabPage_OnCurrentPageChanged(object sender, EventArgs e)

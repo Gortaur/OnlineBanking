@@ -23,12 +23,12 @@ namespace OnlineBankingPrism
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/LoginPage");
+            await NavigationService.NavigateAsync("CustomNavigationPage/LoginPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<NavigationPage>();
+            containerRegistry.RegisterForNavigation<CustomNavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainTabPageViewModel>();
             containerRegistry.RegisterForNavigation<LoginPage,LoginPageViewModel>();
             containerRegistry.RegisterForNavigation<ExchangeRatesPage, ExchangeRatesPageViewModel>();
