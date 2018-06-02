@@ -5,9 +5,11 @@ using System.Web.Http;
 using System.Web.Http.Results;
 using OnlineBankingPrism.SharedEntities.Entities;
 using Web.ApplicationCore.Services;
+using Web.FIlters;
 
 namespace Web.Controllers
 {
+    [AuthenticationFilter]
     [RoutePrefix("user")]
     public class UserController : ApiController
     {

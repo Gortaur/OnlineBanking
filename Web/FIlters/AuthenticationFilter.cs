@@ -19,10 +19,10 @@ namespace Web.FIlters
             // 1. Look for credentials in the request.
             HttpRequestMessage request = context.Request;
             AuthenticationHeaderValue authorization = request.Headers.Authorization;
-
             // 2. If there are no credentials, do nothing.
             if (authorization == null)
             {
+                context.ErrorResult = new AuthenticationFailureResult("Missing credentials", request);
                 return;
             }
 
@@ -30,6 +30,7 @@ namespace Web.FIlters
             //    authentication scheme, do nothing.
             if (authorization.Scheme != "Basic")
             {
+                context.ErrorResult = new AuthenticationFailureResult("Missing credentials", request);
                 return;
             }
 
@@ -56,6 +57,12 @@ namespace Web.FIlters
                 SetPrincipal(new GenericPrincipal(identity, null));
             }
         }
+
+        public async Task ChallengeAsync(HttpAuthenticationChallengeContext context, CancellationToken cancellationToken)
+        {
+            await Task.Delay(1, cancellationToken);
+        }
+
         private void SetPrincipal(IPrincipal principal)
         {
             Thread.CurrentPrincipal = principal;
@@ -78,12 +85,6 @@ namespace Web.FIlters
             var username = usernamePassword.Substring(0, seperatorIndex);
             var password = usernamePassword.Substring(seperatorIndex + 1);
             return new Tuple<string, string>(username, password);
-        }
-        public Task ChallengeAsync(HttpAuthenticationChallengeContext context, CancellationToken cancellationToken)
-        {
-            var challenge = new AuthenticationHeaderValue("Basic");
-            context.Result = new AddChallengeOnUnauthorizedResult(challenge, context.Result);
-            return Task.FromResult(0);
         }
     }
 }
