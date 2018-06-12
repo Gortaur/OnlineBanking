@@ -13,7 +13,7 @@ namespace OnlineBankingPrism.ViewModels
     {
         public TransferPageViewModel(INavigationService navigationService) : base(navigationService)
         {
-            var cardNumberList = Constants.SharedApplicationData.CurrentUser.Cards.Select(item => item.Id).ToList();
+            var cardNumberList = SharedApplicationData.CurrentUser.Cards.Select(item => item.Id).ToList();
             SubmitTransactionCommand = new DelegateCommand(SubmitTransaction);
             UserCards = new ObservableCollection<string>(cardNumberList);
         }
@@ -25,6 +25,7 @@ namespace OnlineBankingPrism.ViewModels
 
         public async void SubmitTransaction()
         {
+            IsBusy = true;
             if (!Double.TryParse(TransactionSumm, out var summ) || String.IsNullOrEmpty(ReceiverCardNumber))
             {
                 return;
@@ -40,14 +41,36 @@ namespace OnlineBankingPrism.ViewModels
             };
             if (!VerifyTransferTransactionDestination(transaction))
             {
+                IsBusy = false;
                 return;
             }
 
-           await RequestManager.RequestManager.PostTransfer(transaction);
-            await NavigationService.NavigateAsync($"CustomNavigationPage/{PageNames.MainTabPage}");
+            if (await RequestManager.RequestManager.PostTransfer(transaction))
+            {
+                var user = await RequestManager.RequestManager.GetAuthenticatedUser(SharedApplicationData.CurrentUser.Login);
+                if (user != null)
+                {
+                    SharedApplicationData.CurrentUser = user;
+                }
+            }
+
+            await NavigationService.NavigateAsync($"{PageNames.MainTabPage}");
+            IsBusy = false;
         }
 
         private Boolean VerifyTransferTransactionDestination(Transaction transaction)
             => transaction.Destination.Length == 16 && transaction.Destination.All(char.IsDigit);
+
+        private bool _isBusy;
+
+        public bool IsBusy
+        {
+            get => _isBusy;
+            set
+            {
+                _isBusy = value;
+                RaisePropertyChanged(nameof(IsBusy));
+            }
+        }
     }
 }

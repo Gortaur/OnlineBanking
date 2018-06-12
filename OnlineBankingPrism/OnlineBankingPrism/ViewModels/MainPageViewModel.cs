@@ -62,12 +62,12 @@ namespace OnlineBankingPrism.ViewModels
 
         public async void NavigateToTransferPage()
         {
-            await NavigationService.NavigateAsync(PageNames.TransferPage);
+            await NavigationService.NavigateAsync($"{PageNames.TransferPage}");
         }
 
         public async void NavigateToReplenishmentPage()
         {
-            await NavigationService.NavigateAsync(PageNames.ReplenishmentPage);
+            await NavigationService.NavigateAsync($"{PageNames.ReplenishmentPage}");
         }
 
         public DelegateCommand NavigateToReplenishmentPageCommand { get; }

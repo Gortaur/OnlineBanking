@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,10 @@ namespace OnlineBankingPrism.Services
     {
         public static async Task<Boolean> Authorize(string login, string password)
         {
-            HttpClientInstance.Client = new HttpClient();
+
+            ServicePointManager.ServerCertificateValidationCallback = (sender, cert, chain, sslPolicyErrors) => true;
+
+            HttpClientInstance.Client = new HttpClient {Timeout = TimeSpan.FromSeconds(20)};
             var encodedPassword = PasswordEncoder.GetHash(password);
             var byteArray = Encoding.ASCII.GetBytes($"{login}:{encodedPassword}");
             HttpClientInstance.Client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));

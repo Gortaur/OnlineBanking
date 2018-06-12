@@ -16,7 +16,8 @@
             <Label Text="Available cards:" FontSize="20" FontAttributes="Bold" />
                 <ScrollView VerticalOptions="StartAndExpand">
                 <StackLayout Margin="2,10,2,0">
-                    <ListView IsPullToRefreshEnabled="True"
+                    <ListView
+                              IsPullToRefreshEnabled="True"
                               RefreshCommand="{Binding RefreshCommand}"
                               IsRefreshing="{Binding IsRefreshing}"
                               RowHeight="80"
